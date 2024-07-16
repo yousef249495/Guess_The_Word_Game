@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="guess.css">
+</head>
+
+<body>
+    <h1></h1>
+    <div class="guess-game">
+        <div class="game-area">
+            <form>
+                <div class="numOfTries">
+                    <label for="numOfTries">How much life do you want in this game (1 - 10)</label>
+                    <input id="numOfTries" type="number" max="10" min="1" autofocus required>
+                </div>
+                <div class="numOfChars">
+                    <label for="numOfChars">how long of every life </label>
+                    <select id="numOfChars">
+                        <option value="3">1 hint for 3 bars long</option>
+                        <option value="5">2 hint for 5 bars long</option>
+                        <option value="10">3 hint for 10 bars long</option>
+                    </select>
+                </div>
+                <input type="submit" value="Save">
+            </form>
+        </div>
+        <div class="key-colors">
+            <h2>key colors</h2>
+            <div class="key-color">
+                <div class="key in-place"></div>
+                <div class="key-text">letter correct and in place</div>
+            </div>
+            <div class="key-color">
+                <div class="key  not-in-place"></div>
+                <div class="key-text">letter correct and not in place</div>
+            </div>
+            <div class="key-color">
+                <div class="key not-in-the-word"></div>
+                <div class="key-text">letter not in the word</div>
+            </div>
+        </div>
+    </div>
+    <footer></footer>
+    <script src="guess.js"></script>
+</body>
+
+</html>

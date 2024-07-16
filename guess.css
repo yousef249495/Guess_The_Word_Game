@@ -1,0 +1,310 @@
+html {
+    --in-place: #03a887;
+    --not-in-place: #ff9e0e;
+    --not-in-the-word: #9ea0ad;
+    --border-ra: 10%;
+    --main-cl: #2a2af9;
+}
+
+* {
+    box-sizing: border-box;
+    text-transform: capitalize;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif !important;
+    margin: 0;
+    background-color: #eee;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    margin: 0 0 50px;
+    font-size: 20p;
+    background-color: white;
+}
+
+.guess-game {
+    text-align: center;
+    width: 90%;
+    margin: 20px auto 100px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .game-area {
+        text-align: center;
+        width: 60%;
+
+        /* Selecting Options  */
+
+        form {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            transition: 0.3s;
+            -webkit-transition: 0.3s;
+            -moz-transition: 0.3s;
+            -ms-transition: 0.3s;
+            -o-transition: 0.3s;
+
+            label {
+                padding: 10px;
+                font-size: 18px;
+                font-weight: bold;
+                margin: 1px auto;
+            }
+
+            div.numOfTries {
+                padding: 30px;
+                margin: 20px auto;
+                background-color: white;
+                border-radius: 4px;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                -ms-border-radius: 4px;
+                -o-border-radius: 4px;
+
+                input {
+                    display: block;
+                    width: 80px;
+                    font-size: 25px;
+                    padding: 15px;
+                    margin: 20px auto 0;
+                    outline: none;
+                    border: none;
+                    caret-color: var(--main-cl);
+                    background-color: #eee;
+                    text-align: center;
+                    border-radius: 4px;
+                    -webkit-border-radius: 4px;
+                    -moz-border-radius: 4px;
+                    -ms-border-radius: 4px;
+                    -o-border-radius: 4px;
+                }
+            }
+
+            div.numOfChars {
+                padding: 30px;
+                margin: 20px auto;
+                background-color: white;
+                border-radius: 4px;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                -ms-border-radius: 4px;
+                -o-border-radius: 4px;
+
+                select {
+                    display: block;
+                    margin: 20px auto 0;
+                    padding: 7px 14px;
+                    border: none;
+                    outline: none;
+                    background-color: #eee;
+                    border-radius: 4px;
+                    -webkit-border-radius: 4px;
+                    -moz-border-radius: 4px;
+                    -ms-border-radius: 4px;
+                    -o-border-radius: 4px;
+                }
+            }
+
+
+            &>input {
+                font-size: 20px;
+                color: white;
+                background-color: var(--main-cl);
+                border: none;
+                border-radius: 4px;
+                padding: 15px 30px;
+            }
+        }
+
+        .inputs {
+            div {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                justify-content: center;
+
+                span {
+                    margin-right: 10px;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                input {
+                    width: 60px;
+                    height: 60px;
+                    padding: 15px;
+                    font-size: 30px;
+                    border: none;
+                    border-bottom: 5px solid #333;
+                    margin-block: 5px;
+                    caret-color: var(--main-cl);
+                    text-align: center;
+                    text-transform: none;
+                    border-radius: 5px;
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    -ms-border-radius: 5px;
+                    -o-border-radius: 5px;
+
+                    &:focus {
+                        outline: #ccc solid 2px;
+                    }
+
+                    &.in-place {
+                        background-color: var(--in-place);
+                        border: var(--in-place);
+                        color: white;
+                    }
+
+                    &.not-in-place {
+                        background-color: var(--not-in-place);
+                        border: var(--not-in-place);
+                        color: white;
+                    }
+
+                    &.not-in-the-word {
+                        background-color: var(--not-in-the-word);
+                        border: var(--not-in-the-word);
+                        color: white;
+                    }
+
+                }
+            }
+
+            .disabled {
+                color: #8e8e8e;
+                opacity: 0.5;
+            }
+        }
+
+        .control {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 500px;
+            margin: 30px auto;
+
+            button {
+                font-family: Arial, Helvetica, sans-serif;
+                font: 25px bold;
+                padding: 15px 20px;
+                border: none;
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                -ms-border-radius: 6px;
+                -o-border-radius: 6px;
+                color: white;
+                cursor: pointer;
+            }
+
+            button:disabled {
+                background-color: black;
+                opacity: 0.4;
+                cursor: no-drop;
+            }
+
+            .check {
+                background-color: var(--main-cl);
+                flex: 1;
+            }
+
+            .hint {
+                background-color: #009688;
+                width: fit-content;
+            }
+        }
+
+        .message {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+
+            span {
+                display: block;
+                font-size: 50px;
+                font-weight: bold;
+                text-transform: capitalize;
+                margin-top: 10px;
+            }
+
+            span.win {
+                color: var(--main-cl);
+            }
+
+            span.lose {
+                color: #ea0201;
+            }
+
+            p {
+                margin-top: 15px;
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+
+    }
+
+    .key-colors {
+        width: 30%;
+
+        h2 {
+            padding: 5px;
+        }
+
+        .key-color {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+
+            .key {
+                width: 25px;
+                height: 25px;
+                margin-right: 5px;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+
+                &.in-place {
+                    background-color: var(--in-place);
+                }
+
+                &.not-in-place {
+                    background-color: var(--not-in-place);
+                }
+
+                &.not-in-the-word {
+                    background-color: var(--not-in-the-word);
+                }
+            }
+
+            .key-text {
+                font-size: 20px;
+                font-weight: bold;
+                padding-left: 5px;
+            }
+        }
+    }
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
