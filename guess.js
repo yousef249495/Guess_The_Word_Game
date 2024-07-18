@@ -6,7 +6,7 @@
 
 window.onload = function () {
     // Put the game name in it's place
-    gameName("guess the word (verision 1)")
+    gameName("guess the word (1.1)")
 
     let startBtn = document.querySelector(".start-btn")
 
