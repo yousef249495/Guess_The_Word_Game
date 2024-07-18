@@ -6,7 +6,7 @@
 
 window.onload = function () {
     // Put the game name in it's place
-    gameName("guess the word", "1.1")
+    gameName("guess the word", "1.3")
 
     let startBtn = document.querySelector(".start-btn")
 
@@ -64,10 +64,7 @@ function checksRequirements() {
                     <button class="check">Check Word</button>
                     <button class="hint"><span></span> Hint</button>
                 </div>
-                <div class="message">
-                    <span></span>
-                    <p></p>
-                </div>`
+                `
 
             console.log(tryNum, wordLen);
 
