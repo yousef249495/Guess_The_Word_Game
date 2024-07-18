@@ -6,7 +6,7 @@
 
 window.onload = function () {
     // Put the game name in it's place
-    gameName("guess the word", "1.3")
+    gameName("guess the word", "1.4")
 
     let startBtn = document.querySelector(".start-btn")
 
@@ -65,8 +65,6 @@ function checksRequirements() {
                     <button class="hint"><span></span> Hint</button>
                 </div>
                 `
-
-            console.log(tryNum, wordLen);
 
             generateInput(tryNum, wordLen)
         } else {
@@ -163,7 +161,6 @@ function generateInput(tryNum, wordLen) {
             break;
 
     }
-    console.log(wordToGuess);
 
     let currentTry = 1
     const messageArea = document.querySelector(".message")
@@ -189,83 +186,6 @@ function generateInput(tryNum, wordLen) {
     const p = document.createElement("p")
     p.innerHTML = `word discription: ${startHints[allWords.indexOf(wordToGuess)]}`
     messageArea.appendChild(p)
-
-
-    // Checking inputs function
-    function handleGuesses() {
-        let successGuess = true
-
-        for (let i = 1; i <= wordLen; i++) {
-            const inputField = document.querySelector(`#try-${currentTry}-char-${i}`)
-            const char = inputField.value.toUpperCase()
-            const correctChar = wordToGuess[i - 1]
-
-            // Game Logic
-            if (correctChar === char) {
-                // char is correct and in place
-                inputField.className = "in-place"
-            } else if (wordToGuess.includes(char) && char !== "") {
-                // char is correct and not in place
-                inputField.className = "not-in-place"
-                successGuess = false
-            } else {
-                // char is not correct and not in the word
-                inputField.className = "not-in-the-word"
-                successGuess = false
-            }
-        }
-
-        // Check if user win or lose
-        if (successGuess) {
-            messageArea.innerHTML = `you won and the word is <span class="win">${wordToGuess}</span>`
-
-            // Disable all Inputs
-            let allTries = document.querySelectorAll(".inputs > div")
-            allTries.forEach((tryDiv) => {
-                tryDiv.classList.add("disabled")
-                tryDiv.disabled = true
-            })
-
-            // Disable check/guess and hint button
-            guessBtn.disabled = true
-            hintBtn.disabled = true
-
-        } else {
-            // Make current row work
-            document.querySelector(`.try-${currentTry}`).classList.add("disabled")
-            let currentTryInputs = document.querySelectorAll(`.try-${currentTry} input`)
-            currentTryInputs.forEach((input) => { input.disabled = true })
-
-            currentTry++
-
-            // Make new row work
-            let nextTry = document.querySelector(`.try-${currentTry}`)
-            if (nextTry) {
-                nextTry.classList.remove("disabled")
-                let nextTryInputs = document.querySelectorAll(`.try-${currentTry} input`)
-                nextTryInputs.forEach((input) => { input.disabled = false })
-
-                // Focus on the first input in the new row
-                nextTryInputs[0].focus()
-            }
-
-
-            // Print lose message
-            if (currentTry > tryNum) {
-                messageArea.innerHTML = `you lost and the word is <span class="lose">${wordToGuess}</span>`
-
-                // Disable check/guess and hint button
-                guessBtn.disabled = true
-                hintBtn.disabled = true
-            }
-
-
-        }
-    }
-
-    // Checking inputs
-    const guessBtn = document.querySelector(".check")
-    guessBtn.addEventListener("click", handleGuesses)
 
     let stopSpamingHintBtn = 4
 
@@ -349,16 +269,14 @@ function generateInput(tryNum, wordLen) {
                 case 0:
                     if (stopSpamingHintBtn === 1) {
                         const stopSpamMsg = document.createElement("p")
-                        stopSpamMsg.innerHTML = `stop spaming`
+                        stopSpamMsg.innerHTML = `stop spaming!!!`
                         messageArea.appendChild(stopSpamMsg)
                         stopSpamingHintBtn--
-                        console.log(stopSpamingHintBtn);
                     } else {
                         const p0 = document.createElement("p")
                         p0.innerHTML = `No more hints`
                         messageArea.appendChild(p0)
                         stopSpamingHintBtn--
-                        console.log(stopSpamingHintBtn);
                     }
                     break;
                 default:
@@ -373,9 +291,102 @@ function generateInput(tryNum, wordLen) {
     const hintBtn = document.querySelector(".hint")
     hintBtn.addEventListener("click", giveUserHint)
 
+    // hint count
     let hintCount = wordToGuess.length === 3 ? 1 : wordToGuess.length === 5 ? 2 : 3
     const hintCountSpan = hintBtn.children[0]
     hintCountSpan.innerHTML = hintCount
+
+
+    // Checking inputs function, during and after
+    function handleGuesses() {
+        // restart the game button
+        let restartBtn = document.createElement("button")
+        restartBtn.textContent = "restart the game"
+        restartBtn.className = "restart"
+
+        let successGuess = true
+
+        for (let i = 1; i <= wordLen; i++) {
+            const inputField = document.querySelector(`#try-${currentTry}-char-${i}`)
+            const char = inputField.value.toUpperCase()
+            const correctChar = wordToGuess[i - 1]
+
+            // Game Logic
+            if (correctChar === char) {
+                // char is correct and in place
+                inputField.className = "in-place"
+            } else if (wordToGuess.includes(char) && char !== "") {
+                // char is correct and not in place
+                inputField.className = "not-in-place"
+                successGuess = false
+            } else {
+                // char is not correct and not in the word
+                inputField.className = "not-in-the-word"
+                successGuess = false
+            }
+        }
+
+        // Check if user win or lose
+        if (successGuess) {
+            messageArea.innerHTML = `you won and the word is <span class="win">${wordToGuess}</span>`
+
+            // Disable all Inputs
+            let allTries = document.querySelectorAll(".inputs > div")
+            allTries.forEach((tryDiv) => {
+                tryDiv.classList.add("disabled")
+                tryDiv.disabled = true
+            })
+
+            // Disable check/guess and hint button
+            guessBtn.disabled = true
+            hintBtn.disabled = true
+
+            // adding restart button
+            document.querySelector(".guess-game .game-area").appendChild(restartBtn)
+
+        } else {
+            // Make current row work
+            document.querySelector(`.try-${currentTry}`).classList.add("disabled")
+            let currentTryInputs = document.querySelectorAll(`.try-${currentTry} input`)
+            currentTryInputs.forEach((input) => { input.disabled = true })
+
+            currentTry++
+
+            // Make new row work
+            let nextTry = document.querySelector(`.try-${currentTry}`)
+            if (nextTry) {
+                nextTry.classList.remove("disabled")
+                let nextTryInputs = document.querySelectorAll(`.try-${currentTry} input`)
+                nextTryInputs.forEach((input) => { input.disabled = false })
+
+                // Focus on the first input in the new row
+                nextTryInputs[0].focus()
+            }
+
+
+            // Print lose message
+            if (currentTry > tryNum) {
+                messageArea.innerHTML = `you lost and the word is <span class="lose">${wordToGuess}</span>`
+
+                // Disable check/guess and hint button
+                guessBtn.disabled = true
+                hintBtn.disabled = true
+
+                // adding restart button
+                document.querySelector(".guess-game .game-area").appendChild(restartBtn)
+            }
+
+        }
+
+        // refresh the page on the end
+        restartBtn.addEventListener("click", () => location.reload())
+
+    }
+
+    // Checking inputs
+    const guessBtn = document.querySelector(".check")
+    guessBtn.addEventListener("click", handleGuesses)
+
 
 
 }
