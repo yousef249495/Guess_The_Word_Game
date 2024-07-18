@@ -358,4 +358,12 @@ footer {
     background: #333;
     color: white;
     padding: 20px;
+
+    span {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 5px;
+        font-size: 15px;
+    }
 }

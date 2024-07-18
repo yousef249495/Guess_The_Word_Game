@@ -6,7 +6,7 @@
 
 window.onload = function () {
     // Put the game name in it's place
-    gameName("guess the word (1.1)")
+    gameName("guess the word", "1.1")
 
     let startBtn = document.querySelector(".start-btn")
 
@@ -39,11 +39,11 @@ window.onload = function () {
 }
 
 // Setting the game name
-function gameName(name) {
+function gameName(name, verision) {
     document.title = name
     document.querySelector("h1").textContent = name
     document.querySelector("h2 span").textContent = name
-    document.querySelector("footer").textContent = `${name} game created by Yousef`
+    document.querySelector("footer").innerHTML = `${name} game created by Yousef<span>verision: ${verision}</span>`
 }
 
 function checksRequirements() {
