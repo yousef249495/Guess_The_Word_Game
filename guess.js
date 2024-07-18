@@ -1,12 +1,89 @@
 
+// document.addEventListener("keydown", (e) => {
+//     console.log(e.key)
+// })
+
+
+window.onload = function () {
+    // Put the game name in it's place
+    gameName("guess the word (verision 1)")
+
+    let startBtn = document.querySelector(".start-btn")
+
+    startBtn.addEventListener("click", function () {
+        document.querySelector(".guess-game .game-area").innerHTML = ` 
+            <form>
+                <div class="numOfTries">
+                    <label for="numOfTries">How much life do you want in this game (1 - 10)</label>
+                    <input id="numOfTries" type="number" max="10" min="1" autofocus required>
+                </div>
+                <div class="numOfChars">
+                    <label for="numOfChars">how long of every life </label>
+                    <select id="numOfChars">
+                        <option value="3">3 litters</option>
+                        <option value="5">5 litters</option>
+                        <option value="10">10 litters</option>
+                    </select>
+                </div>
+                <div class="check-before-play">
+                    <input type="checkbox" id="hint-acknowled-check" name="hint-acknowled">
+                    <label for="hint-acknowled-check">Do you acknowledge that: (long 3 = 1 hint), (long 5 = 2 hint), (long 10 = 3 hint)</label>
+                </div>
+                <input type="submit" value="Save">
+            </form>
+            `
+
+        checksRequirements()
+    })
+
+}
+
 // Setting the game name
 function gameName(name) {
     document.title = name
     document.querySelector("h1").textContent = name
+    document.querySelector("h2 span").textContent = name
     document.querySelector("footer").textContent = `${name} game created by Yousef`
 }
 
+function checksRequirements() {
+    // Form section 
+    let form = document.forms[0]
+    const hintAcknowled = document.querySelector("#hint-acknowled-check")
 
+    form.addEventListener("submit", function (e) {
+        e.preventDefault()
+
+        if (hintAcknowled.checked) {
+            const tryNum = +document.querySelector("form .numOfTries input").value
+            const wordLen = +document.querySelector("form .numOfChars select").value
+
+            document.querySelector(".guess-game .game-area").innerHTML = ` 
+                <div class="inputs"></div>
+                <div class="control">
+                    <button class="check">Check Word</button>
+                    <button class="hint"><span></span> Hint</button>
+                </div>
+                <div class="message">
+                    <span></span>
+                    <p></p>
+                </div>`
+
+            console.log(tryNum, wordLen);
+
+            generateInput(tryNum, wordLen)
+        } else {
+            const hintAcknowledDiv = document.querySelector(".check-before-play")
+            hintAcknowledDiv.innerHTML = `                    
+                    <p style="color:red;"> please check this condition</p>
+                    <input type="checkbox" id="hint-acknowled-check" name="hint-acknowled">
+                    <label for="hint-acknowled-check">You acknowled about: (long 3 = 1 hint), (long 5 = 2 hint), (long 10 = 3 hint)</label>
+                    `
+            checksRequirements()
+        }
+
+    })
+}
 
 function generateInput(tryNum, wordLen) {
     const inputContainer = document.querySelector(".inputs")
@@ -94,6 +171,28 @@ function generateInput(tryNum, wordLen) {
     let currentTry = 1
     const messageArea = document.querySelector(".message")
 
+    // Print word description
+    const allWords = [...wordList3, ...wordList5, ...wordList10]
+    const startHints = [
+        "Covers 71% of the Earth's surface.",
+        "A member of the Felidae family.",
+        "Central to our solar system.",
+        "Can signify status or style.",
+        "Symbol of stability and ownership.",
+        "Performs photosynthesis.",
+        "Comes in varieties like Fuji, Granny Smith, and Honeycrisp.",
+        "Exists in three states: solid, liquid, and gas.",
+        "An apex predator native to Asia.",
+        "A staple food made from flour and water.",
+        "Played on a court, typically indoors.",
+        "A bond based on mutual affection.",
+        "Revolutionized entertainment and news dissemination.",
+        "Requires balance and skill to operate safely."
+    ];
+    const p = document.createElement("p")
+    p.innerHTML = `word discription: ${startHints[allWords.indexOf(wordToGuess)]}`
+    messageArea.appendChild(p)
+
 
     // Checking inputs function
     function handleGuesses() {
@@ -171,10 +270,9 @@ function generateInput(tryNum, wordLen) {
     const guessBtn = document.querySelector(".check")
     guessBtn.addEventListener("click", handleGuesses)
 
-
+    let stopSpamingHintBtn = 4
 
     function giveUserHint() {
-        const allWords = [...wordList3, ...wordList5, ...wordList10]
         const hardHints = [
             "A vast expanse of salty water, smaller than an ocean.", // sea
             "A small carnivorous mammal often kept as a pet.", // cat
@@ -226,30 +324,49 @@ function generateInput(tryNum, wordLen) {
             "It's a vehicle you ride on that has a motor and two wheels." // motorcycle
         ];
 
-        console.log(hintCount);
         hintCountSpan.innerHTML = hintCount
 
-        switch (hintCount) {
-            case 3:
-                hintCount--
-                hintCountSpan.innerHTML = hintCount
-                messageArea.innerHTML = `Hint: ${hardHints[allWords.indexOf(wordToGuess)]}`
-                break;
-            case 2:
-                hintCount--
-                hintCountSpan.innerHTML = hintCount
-                messageArea.innerHTML = `Hint: ${mediumHints[allWords.indexOf(wordToGuess)]}`
-                break;
-            case 1:
-                hintCount--
-                hintCountSpan.innerHTML = hintCount
-                messageArea.innerHTML = `Hint: ${easyHints[allWords.indexOf(wordToGuess)]}`
-                break;
-            case 0:
-                messageArea.innerHTML = `No more hints`
-                break;
-            default:
-                messageArea.innerHTML = `There are an error`
+        if (stopSpamingHintBtn > 0) {
+            switch (hintCount) {
+                case 3:
+                    hintCount--
+                    hintCountSpan.innerHTML = hintCount
+                    const p3 = document.createElement("p")
+                    p3.innerHTML = `Hint 1: ${hardHints[allWords.indexOf(wordToGuess)]}`
+                    messageArea.appendChild(p3)
+                    break;
+                case 2:
+                    hintCount--
+                    hintCountSpan.innerHTML = hintCount
+                    const p2 = document.createElement("p")
+                    p2.innerHTML = `Hint 2: ${mediumHints[allWords.indexOf(wordToGuess)]}`
+                    messageArea.appendChild(p2)
+                    break;
+                case 1:
+                    hintCount--
+                    hintCountSpan.innerHTML = hintCount
+                    const p1 = document.createElement("p")
+                    p1.innerHTML = `Hint 3: ${easyHints[allWords.indexOf(wordToGuess)]}`
+                    messageArea.appendChild(p1)
+                    break;
+                case 0:
+                    if (stopSpamingHintBtn === 1) {
+                        const stopSpamMsg = document.createElement("p")
+                        stopSpamMsg.innerHTML = `stop spaming`
+                        messageArea.appendChild(stopSpamMsg)
+                        stopSpamingHintBtn--
+                        console.log(stopSpamingHintBtn);
+                    } else {
+                        const p0 = document.createElement("p")
+                        p0.innerHTML = `No more hints`
+                        messageArea.appendChild(p0)
+                        stopSpamingHintBtn--
+                        console.log(stopSpamingHintBtn);
+                    }
+                    break;
+                default:
+                    messageArea.innerHTML = `There are an error`
+            }
         }
 
 
@@ -270,40 +387,7 @@ function generateInput(tryNum, wordLen) {
 
 
 
-window.onload = function () {
-    // Put the game name in it's place
-    gameName("guess the word (demo)")
 
-    let tryNum, wordLen
-    let form = document.forms[0]
-
-    form.addEventListener("submit", function (e) {
-        e.preventDefault()
-        tryNum = +document.querySelector("form .numOfTries input").value
-        wordLen = +document.querySelector("form .numOfChars select").value
-
-        document.querySelector(".guess-game .game-area").removeChild(form)
-        console.log(tryNum, wordLen);
-
-        document.querySelector(".guess-game .game-area").innerHTML = ` 
-            <div class="inputs"></div>
-            <div class="control">
-                <button class="check">Check Word</button>
-                <button class="hint"><span></span> Hint</button>
-            </div>
-            <div class="message">
-                <span></span>
-                <p>To know the same letter could be more than one in the same word or not</p>
-            </div>`
-
-        generateInput(tryNum, wordLen)
-
-
-    })
-
-
-
-}
 
 
 

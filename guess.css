@@ -1,9 +1,11 @@
 html {
-    --in-place: #03a887;
-    --not-in-place: #ff9e0e;
-    --not-in-the-word: #9ea0ad;
-    --border-ra: 10%;
-    --main-cl: #2a2af9;
+    --in-place: linear-gradient(to right, #00b09b, #96c93d);
+    --not-in-place: linear-gradient(to right, #f7971e, #ffd200);
+    --not-in-the-word: linear-gradient(to right, #bdc3c7, #2c3e50);
+    --border-ra: 4px;
+    --btn-cl: linear-gradient(to right, #6a11cb, #2575fc);
+    --back-cl: linear-gradient(to right, #e0eafc, #cfdef3);
+    ;
 }
 
 * {
@@ -14,15 +16,14 @@ html {
 body {
     font-family: Arial, Helvetica, sans-serif !important;
     margin: 0;
-    background-color: #eee;
+    background: #eee;
 }
 
 h1 {
     text-align: center;
     padding: 20px;
     margin: 0 0 50px;
-    font-size: 20p;
-    background-color: white;
+    background: white;
 }
 
 .guess-game {
@@ -37,7 +38,42 @@ h1 {
         text-align: center;
         width: 60%;
 
-        /* Selecting Options  */
+        .start-message {
+            background: var(--back-cl);
+            padding: 50px;
+            margin: 20px auto;
+            border-radius: var(--border-ra);
+            -webkit-border-radius: var(--border-ra);
+            -moz-border-radius: var(--border-ra);
+            -ms-border-radius: var(--border-ra);
+            -o-border-radius: var(--border-ra);
+
+            h2 {
+                margin-bottom: 100px;
+            }
+
+            p {
+                line-height: 1.6;
+                font-size: 20px;
+            }
+
+            & button {
+                margin-top: 100px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 23px;
+                font-weight: bold;
+                padding: 15px 20px;
+                border: none;
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                -ms-border-radius: 6px;
+                -o-border-radius: 6px;
+                color: white;
+                background: var(--btn-cl);
+                cursor: pointer;
+            }
+        }
 
         form {
             width: 100%;
@@ -59,7 +95,7 @@ h1 {
             div.numOfTries {
                 padding: 30px;
                 margin: 20px auto;
-                background-color: white;
+                background: var(--back-cl);
                 border-radius: 4px;
                 -webkit-border-radius: 4px;
                 -moz-border-radius: 4px;
@@ -74,8 +110,8 @@ h1 {
                     margin: 20px auto 0;
                     outline: none;
                     border: none;
-                    caret-color: var(--main-cl);
-                    background-color: #eee;
+                    caret-color: var(--btn-cl);
+                    background: #eee;
                     text-align: center;
                     border-radius: 4px;
                     -webkit-border-radius: 4px;
@@ -88,7 +124,7 @@ h1 {
             div.numOfChars {
                 padding: 30px;
                 margin: 20px auto;
-                background-color: white;
+                background: var(--back-cl);
                 border-radius: 4px;
                 -webkit-border-radius: 4px;
                 -moz-border-radius: 4px;
@@ -101,7 +137,7 @@ h1 {
                     padding: 7px 14px;
                     border: none;
                     outline: none;
-                    background-color: #eee;
+                    background: #eee;
                     border-radius: 4px;
                     -webkit-border-radius: 4px;
                     -moz-border-radius: 4px;
@@ -110,14 +146,25 @@ h1 {
                 }
             }
 
-
             &>input {
-                font-size: 20px;
+                font-size: 23px;
+                font-weight: bold;
                 color: white;
-                background-color: var(--main-cl);
+                background: var(--btn-cl);
                 border: none;
                 border-radius: 4px;
                 padding: 15px 30px;
+            }
+
+            .check-before-play {
+                background: var(--back-cl);
+                padding: 30px;
+                margin: 20px auto;
+                border-radius: 4px;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                -ms-border-radius: 4px;
+                -o-border-radius: 4px;
             }
         }
 
@@ -142,7 +189,7 @@ h1 {
                     border: none;
                     border-bottom: 5px solid #333;
                     margin-block: 5px;
-                    caret-color: var(--main-cl);
+                    caret-color: var(--btn-cl);
                     text-align: center;
                     text-transform: none;
                     border-radius: 5px;
@@ -156,19 +203,19 @@ h1 {
                     }
 
                     &.in-place {
-                        background-color: var(--in-place);
+                        background: var(--in-place);
                         border: var(--in-place);
                         color: white;
                     }
 
                     &.not-in-place {
-                        background-color: var(--not-in-place);
+                        background: var(--not-in-place);
                         border: var(--not-in-place);
                         color: white;
                     }
 
                     &.not-in-the-word {
-                        background-color: var(--not-in-the-word);
+                        background: var(--not-in-the-word);
                         border: var(--not-in-the-word);
                         color: white;
                     }
@@ -192,7 +239,8 @@ h1 {
 
             button {
                 font-family: Arial, Helvetica, sans-serif;
-                font: 25px bold;
+                font-size: 23px;
+                font-weight: bold;
                 padding: 15px 20px;
                 border: none;
                 border-radius: 6px;
@@ -205,18 +253,18 @@ h1 {
             }
 
             button:disabled {
-                background-color: black;
+                background: black;
                 opacity: 0.4;
                 cursor: no-drop;
             }
 
             .check {
-                background-color: var(--main-cl);
+                background: var(--btn-cl);
                 flex: 1;
             }
 
             .hint {
-                background-color: #009688;
+                background: #009688;
                 width: fit-content;
             }
         }
@@ -235,7 +283,10 @@ h1 {
             }
 
             span.win {
-                color: var(--main-cl);
+                background: var(--btn-cl);
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
             }
 
             span.lose {
@@ -259,7 +310,7 @@ h1 {
         }
 
         .key-color {
-            background-color: white;
+            background: var(--back-cl);
             padding: 10px;
             margin-bottom: 10px;
             display: flex;
@@ -276,15 +327,15 @@ h1 {
                 -o-border-radius: 50%;
 
                 &.in-place {
-                    background-color: var(--in-place);
+                    background: var(--in-place);
                 }
 
                 &.not-in-place {
-                    background-color: var(--not-in-place);
+                    background: var(--not-in-place);
                 }
 
                 &.not-in-the-word {
-                    background-color: var(--not-in-the-word);
+                    background: var(--not-in-the-word);
                 }
             }
 
@@ -304,7 +355,7 @@ footer {
     width: 100%;
     font-weight: bold;
     text-align: center;
-    background-color: #333;
+    background: #333;
     color: white;
     padding: 20px;
 }
