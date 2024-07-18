@@ -272,7 +272,7 @@ function generateInput(tryNum, wordLen) {
 
 window.onload = function () {
     // Put the game name in it's place
-    gameName("guess the word")
+    gameName("guess the word (demo)")
 
     let tryNum, wordLen
     let form = document.forms[0]
