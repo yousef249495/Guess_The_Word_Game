@@ -6,7 +6,7 @@
 
 window.onload = function () {
     // Put the game name in it's place
-    gameName("guess the word", "1.5")
+    gameName("guess the word", "1.6")
 
     let startBtn = document.querySelector(".start-btn")
 
@@ -104,6 +104,10 @@ function generateInput(tryNum, wordLen) {
 
         // Adding parent div of inputs to index.html
         inputContainer.appendChild(tryDiv)
+
+        // Makeing message area appeare
+        document.querySelector(".guess-game .user-help").style.display = "block"
+        document.querySelector(".guess-game").style.marginBottom = "100px"
 
         // Disable all inputs except first input
         const inputsInDisabledDiv = document.querySelectorAll(".disabled input")
@@ -443,21 +447,21 @@ function generateInput(tryNum, wordLen) {
                     hintCount--
                     hintCountSpan.innerHTML = hintCount
                     const p3 = document.createElement("p")
-                    p3.innerHTML = `Hint 1: ${hardHints[allWords.indexOf(wordToGuess)]}`
+                    p3.innerHTML = `Hint: ${hardHints[allWords.indexOf(wordToGuess)]}`
                     messageArea.appendChild(p3)
                     break;
                 case 2:
                     hintCount--
                     hintCountSpan.innerHTML = hintCount
                     const p2 = document.createElement("p")
-                    p2.innerHTML = `Hint 2: ${mediumHints[allWords.indexOf(wordToGuess)]}`
+                    p2.innerHTML = `Hint: ${mediumHints[allWords.indexOf(wordToGuess)]}`
                     messageArea.appendChild(p2)
                     break;
                 case 1:
                     hintCount--
                     hintCountSpan.innerHTML = hintCount
                     const p1 = document.createElement("p")
-                    p1.innerHTML = `Hint 3: ${easyHints[allWords.indexOf(wordToGuess)]}`
+                    p1.innerHTML = `Hint: ${easyHints[allWords.indexOf(wordToGuess)]}`
                     messageArea.appendChild(p1)
                     break;
                 case 0:
@@ -537,6 +541,7 @@ function generateInput(tryNum, wordLen) {
 
             // adding restart button
             document.querySelector(".guess-game .user-help").appendChild(restartBtn)
+            messageArea.style.marginBottom = "50px"
 
         } else {
             // Make current row work
@@ -568,6 +573,7 @@ function generateInput(tryNum, wordLen) {
 
                 // adding restart button
                 document.querySelector(".guess-game .user-help").appendChild(restartBtn)
+                messageArea.style.marginBottom = "50px"
             }
 
         }

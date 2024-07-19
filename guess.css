@@ -40,9 +40,21 @@ h1 {
     align-items: flex-start;
     justify-content: space-between;
 
+    @media (max-width:900px) {
+        & {
+            flex-direction: column-reverse;
+            align-items: center;
+            width: 100%;
+        }
+    }
+
     .game-area {
         text-align: center;
         width: 60%;
+
+        @media (max-width:900px) {
+            width: 90%;
+        }
 
         .start-message {
             background: var(--back-cl);
@@ -92,6 +104,7 @@ h1 {
             -o-transition: 0.3s;
 
             label {
+                line-height: 1.6;
                 padding: 10px;
                 font-size: 18px;
                 font-weight: bold;
@@ -244,6 +257,10 @@ h1 {
             width: 500px;
             margin: 30px auto;
 
+            @media (max-width:900px) {
+                width: fit-content;
+            }
+
             button {
                 font-family: Arial, Helvetica, sans-serif;
                 font-size: 23px;
@@ -280,8 +297,15 @@ h1 {
     .user-help {
         width: 30%;
 
+        @media (max-width:900px) {
+            & {
+                display: none;
+                width: 90%;
+            }
+        }
+
         .key-colors {
-            margin-bottom: 100px;
+            margin-bottom: 50px;
 
             h2 {
                 padding: 5px;
@@ -343,6 +367,12 @@ h1 {
             -ms-border-radius: var(--border-ra);
             -o-border-radius: var(--border-ra);
 
+            @media (max-width:900px) {
+                & {
+                    margin-bottom: 100px;
+                }
+            }
+
 
             span {
                 display: block;
@@ -396,6 +426,12 @@ h1 {
             color: white;
             background: var(--btn-cl);
             cursor: pointer;
+
+            @media (max-width:900px) {
+                & {
+                    margin: 0 0 100px;
+                }
+            }
         }
     }
 }
@@ -417,5 +453,11 @@ footer {
         bottom: 0;
         padding: 5px;
         font-size: 15px;
+
+        @media (max-width:900px) {
+            & {
+                font-size: 10px;
+            }
+        }
     }
 }
