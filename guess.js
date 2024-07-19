@@ -6,7 +6,7 @@
 
 window.onload = function () {
     // Put the game name in it's place
-    gameName("guess the word", "1.4")
+    gameName("guess the word", "1.5")
 
     let startBtn = document.querySelector(".start-btn")
 
@@ -102,7 +102,7 @@ function generateInput(tryNum, wordLen) {
             tryDiv.appendChild(input)
         }
 
-        // Adding to index.html
+        // Adding parent div of inputs to index.html
         inputContainer.appendChild(tryDiv)
 
         // Disable all inputs except first input
@@ -145,9 +145,18 @@ function generateInput(tryNum, wordLen) {
 
     // Manege words list
     let wordToGuess = ""
-    const wordList3 = ["SEA", "CAT", "SUN", "HAT"]
-    const wordList5 = ["HOUSE", "PLANT", "APPLE", "WATER", "TIGER", "BREAD"]
-    const wordList10 = ["BASKETBALL", "FRIENDSHIP", "TELEVISION", "MOTORCYCLE"]
+    const wordList3 = ['SEA', 'CAT', 'SUN', 'HAT', 'BAT',
+        'DOG', 'RUN', 'NET', 'CUP', 'BOX',
+        'JAM', 'MAP', 'PEN', 'CAP', 'FAN',
+        'ANT', 'FOX', 'JAR', 'PIG', 'OWL']
+    const wordList5 = ['HOUSE', 'PLANT', 'APPLE', 'WATER', 'TIGER',
+        'BREAD', 'CHAIR', 'TABLE', 'GRAPE', 'SHIRT',
+        'LIGHT', 'BRUSH', 'MATCH', 'SNAKE', 'SHELF',
+        'PLANE', 'CANDY', 'DREAM', 'SWEET', 'STONE']
+    const wordList10 = ['BASKETBALL', 'FRIENDSHIP', 'TELEVISION', 'MOTORCYCLE', 'ADVERTISEMENT',
+        'MANUFACTURER', 'BOOKKEEPING', 'PHOTOGRAPHY', 'LITERATURE', 'SUPERVISOR',
+        'GENEROSITY', 'ASTRONAUTS', 'IMAGINATION', 'CARPENTER', 'CHOCOLATES',
+        'LEADERSHIP', 'COMPETITOR', 'RELATIONSHIP', 'CONTROLLER', 'PUBLICATION']
 
     switch (wordLen) {
         case 3:
@@ -167,21 +176,68 @@ function generateInput(tryNum, wordLen) {
 
     // Print word description
     const allWords = [...wordList3, ...wordList5, ...wordList10]
+    console.log(allWords);
     const startHints = [
-        "Covers 71% of the Earth's surface.",
-        "A member of the Felidae family.",
-        "Central to our solar system.",
-        "Can signify status or style.",
-        "Symbol of stability and ownership.",
-        "Performs photosynthesis.",
-        "Comes in varieties like Fuji, Granny Smith, and Honeycrisp.",
-        "Exists in three states: solid, liquid, and gas.",
-        "An apex predator native to Asia.",
-        "A staple food made from flour and water.",
-        "Played on a court, typically indoors.",
-        "A bond based on mutual affection.",
-        "Revolutionized entertainment and news dissemination.",
-        "Requires balance and skill to operate safely."
+        "It's often associated with tides and waves.", // SEA
+        "A feline animal often seen as a pet and known for its agility.", // CAT
+        "The main source of energy for life on Earth.", // SUN
+        "A head accessory that can be made of various materials like wool or cotton.", // HAT
+        "A piece of sports equipment also associated with vampires in folklore.", // BAT
+        "A loyal companion, often trained for various tasks.", // DOG
+        "A form of exercise that increases heart rate and endurance.", // RUN
+        "A woven fabric device used in sports like tennis and volleyball.", // NET
+        "A small container used in many cultures for drinking.", // CUP
+        "A durable container often used for shipping or storage.", // BOX
+        "A fruit preserve that pairs well with peanut butter.", // JAM
+        "Often used by explorers and travelers to navigate unfamiliar territory.", // MAP
+        "Commonly found in offices and schools, used for writing.", // PEN
+        "Commonly associated with sports teams and casual wear.", // CAP
+        "An electrical appliance used to circulate air.", // FAN
+        "An insect known for its strength relative to its size.", // ANT
+        "Often depicted as clever and sly in stories.", // FOX
+        "A storage container that can hold pickles, jams, or other preserves.", // JAR
+        "A farm animal that wallows in mud to stay cool.", // PIG
+        "A bird often symbolizing wisdom in mythology.", // OWL
+        "A structure that provides shelter and living space for a family.", // HOUSE
+        "A living organism that absorbs water and nutrients through its roots.", // PLANT
+        "A common fruit that is often associated with teachers.", // APPLE
+        "A liquid essential for hydration and life, covering about 71% of Earth's surface.", // WATER
+        "A large wild cat with distinctive orange and black stripes.", // TIGER
+        "A staple food item that comes in various forms such as loaves, rolls, and baguettes.", // BREAD
+        "A piece of furniture with a backrest and four legs.", // CHAIR
+        "A flat surface supported by legs, used for dining or working.", // TABLE
+        "A small, round, and often purple fruit that grows in clusters.", // GRAPE
+        "An upper body garment typically with a collar and buttons.", // SHIRT
+        "A source of artificial illumination in homes and offices.", // LIGHT
+        "An implement with bristles, used for grooming or cleaning.", // BRUSH
+        "A small stick coated with a chemical substance that ignites when struck.", // MATCH
+        "A limbless reptile that moves by slithering.", // SNAKE
+        "A flat surface attached to a wall for holding objects.", // SHELF
+        "A vehicle designed for air travel with wings and engines.", // PLANE
+        "A confectionery item often given as a treat or reward.", // CANDY
+        "A succession of images or events that occurs during sleep.", // DREAM
+        "A word often used to describe confections and desserts.", // SWEET
+        "A naturally occurring solid material from the earth's crust.", // STONE
+        "A sport where players try to score by shooting a ball through a hoop.", // BASKETBALL
+        "A relationship based on mutual affection and trust.", // FRIENDSHIP
+        "A device for viewing moving pictures and sound.", // TELEVISION
+        "A two-wheeled vehicle powered by an engine.", // MOTORCYCLE
+        "A public notice designed to promote products, services, or events.", // ADVERTISEMENT
+        "An entity that produces goods on a large scale for sale.", // MANUFACTURER
+        "The activity of recording financial transactions systematically.", // BOOKKEEPING
+        "The practice or profession of taking and processing photographs.", // PHOTOGRAPHY
+        "Written works, especially those considered of superior or lasting artistic merit.", // LITERATURE
+        "A person who directs and oversees the work of others.", // SUPERVISOR
+        "The quality of being unselfish and willing to give.", // GENEROSITY
+        "Individuals trained to travel and work in space.", // ASTRONAUTS
+        "The ability to create mental images or concepts beyond reality.", // IMAGINATION
+        "A craftsman who works with wood, often constructing buildings or furniture.", // CARPENTER
+        "Sweet edible treats made from cacao beans.", // CHOCOLATES
+        "The ability to lead and direct others effectively.", // LEADERSHIP
+        "An adversary in a competitive activity or sport.", // COMPETITOR
+        "A significant connection or association between people.", // RELATIONSHIP
+        "A device that manages or regulates the operation of a machine or system.", // CONTROLLER
+        "The act of producing and distributing printed or digital material.", // PUBLICATION
     ];
     const p = document.createElement("p")
     p.innerHTML = `word discription: ${startHints[allWords.indexOf(wordToGuess)]}`
@@ -191,54 +247,192 @@ function generateInput(tryNum, wordLen) {
 
     function giveUserHint() {
         const hardHints = [
-            "A vast expanse of salty water, smaller than an ocean.", // sea
-            "A small carnivorous mammal often kept as a pet.", // cat
-            "The star at the center of our solar system.", // sun
-            "An item of clothing worn on the head.", // hat
-            "A building for human habitation.", // house
-            "A living organism that typically grows in the earth.", // plant
-            "A fruit that grows on trees.", // apple
-            "A transparent, tasteless, odorless, and nearly colorless chemical substance.", // water
-            "A large carnivorous feline with a distinctive coat pattern.", // tiger
-            "A staple food made from flour and water and usually baked.", // bread
-            "A sport played with a round ball and two hoops.", // basketball
-            "A close and trusting relationship between two or more people.", // friendship
-            "A device for viewing visual and audio broadcasts.", // television
-            "A Means of transport." // motorcycle
+            "A vast expanse of salty water, smaller than an ocean.", // SEA
+            "A small carnivorous mammal often kept as a pet.", // CAT
+            "The star at the center of our solar system.", // SUN
+            "An item of clothing worn on the head.", // HAT
+            "A solid or hollow cylinder, usually made of wood, used in sports.", // BAT
+            "A domesticated mammal known for its loyalty.", // DOG
+            "To move swiftly on foot.", // RUN
+            "A mesh used to catch or enclose.", // NET
+            "A small, open container for drinking.", // CUP
+            "A container with flat sides and a lid, used for storage.", // BOX
+            "A thick fruit preserve.", // JAM
+            "A representation of geographical area.", // MAP
+            "A writing instrument using ink.", // PEN
+            "A soft, flat hat with a brim and sometimes a visor.", // CAP
+            "A device for creating air flow.", // FAN
+            "A small insect that can carry many times its own weight.", // ANT
+            "A small, omnivorous mammal with a bushy tail.", // FOX
+            "A cylindrical container with a lid.", // JAR
+            "A domesticated, pig-like animal raised for meat.", // PIG
+            "A nocturnal bird of prey with a large head.", // OWL
+            "A residential building.", // HOUSE
+            "A living organism that grows in soil and converts sunlight into energy.", // PLANT
+            "A round fruit that grows on trees.", // APPLE
+            "A chemical compound consisting of hydrogen and oxygen.", // WATER
+            "A large feline predator with a striped coat.", // TIGER
+            "A staple food made from dough and baked.", // BREAD
+            "A piece of furniture for one person to sit on.", // CHAIR
+            "A piece of furniture with a flat surface supported by legs.", // TABLE
+            "A small, round fruit growing in clusters.", // GRAPE
+            "An article of clothing for the upper body.", // SHIRT
+            "A device that produces artificial illumination.", // LIGHT
+            "An implement with bristles used for cleaning or grooming.", // BRUSH
+            "A small stick that ignites when struck.", // MATCH
+            "A legless reptile.", // SNAKE
+            "A flat, horizontal surface attached to a wall for storage.", // SHELF
+            "A flying vehicle with fixed wings.", // PLANE
+            "A sweet confectionery item.", // CANDY
+            "A series of images or events experienced during sleep.", // DREAM
+            "Something pleasant and sugary.", // SWEET
+            "A hard, naturally occurring mineral.", // STONE
+            "A sport involving shooting a ball through a hoop.", // BASKETBALL
+            "A relationship marked by mutual affection.", // FRIENDSHIP
+            "A device for watching visual content.", // TELEVISION
+            "A motor-powered vehicle with two wheels.", // MOTORCYCLE
+            "A public announcement promoting goods or services.", // ADVERTISEMENT
+            "A company that produces goods in large quantities.", // MANUFACTURER
+            "The recording of financial transactions.", // BOOKKEEPING
+            "The practice or art of capturing images with a camera.", // PHOTOGRAPHY
+            "Written works considered to have high artistic merit.", // LITERATURE
+            "A person who oversees the work of others.", // SUPERVISOR
+            "The willingness to give or share freely.", // GENEROSITY
+            "People trained for space travel.", // ASTRONAUTS
+            "The power to create new ideas or images in the mind.", // IMAGINATION
+            "A skilled tradesperson who works with wood.", // CARPENTER
+            "Sweet confections made from cocoa beans.", // CHOCOLATES
+            "The capacity to lead and influence others.", // LEADERSHIP
+            "A rival or challenger in a contest.", // COMPETITOR
+            "A bond or connection between individuals or groups.", // RELATIONSHIP
+            "A mechanism or device that regulates or manages something.", // CONTROLLER
+            "The act of making content available to the public.", // PUBLICATION
         ];
 
         const mediumHints = [
-            "Many ships travel across it, and it's home to numerous marine species.", // sea
-            "It has sharp claws and is known for catching mice.", // cat
-            "It provides light and warmth to Earth.", // sun
-            "It can be used for fashion or protection from the sun.", // hat
-            "It typically has rooms for living, cooking, and sleeping.", // house
-            "It uses photosynthesis to make food from sunlight.", // plant
-            "It's often red or green and is associated with the phrase 'an apple a day keeps the doctor away.'", // apple
-            "It's essential for all known forms of life and makes up about 71% of the Earth's surface.", // water
-            "It is known for its orange fur with black stripes.", // tiger
-            "It can be sliced for sandwiches or toasted for breakfast.", // bread
-            "Players score points by throwing the ball into the opponent's hoop.", // basketball
-            "It involves mutual affection, trust, and support.", // friendship
-            "It has channels that show programs, movies, and news.", // television
-            "It's faster and more agile than a bicycle, often used for commuting or racing." // motorcycle
+            "Many ships travel across it, and it's home to numerous marine species.", // SEA
+            "It has sharp claws and is known for catching mice.", // CAT
+            "It provides light and warmth to Earth.", // SUN
+            "It can be used for fashion or protection from the sun.", // HAT
+            "Commonly used in the sport of baseball to hit the ball.", // BAT
+            "A common pet known for its loyalty and barking.", // DOG
+            "You do this to move quickly on your feet.", // RUN
+            "Often used in sports to catch or block objects.", // NET
+            "A small, handle-less drinking vessel.", // CUP
+            "Used for storing items, often made of cardboard or wood.", // BOX
+            "Often spread on bread; can be made from strawberries.", // JAM
+            "A diagram representing an area with streets and landmarks.", // MAP
+            "An instrument for writing or drawing with ink.", // PEN
+            "A soft hat with a visor.", // CAP
+            "Produces air flow and can be electric or manual.", // FAN
+            "A small insect known for its strength and colony behavior.", // ANT
+            "A cunning animal often depicted in stories and folklore.", // FOX
+            "A container typically used for storing food or other items.", // JAR
+            "A pink farm animal known for its curly tail.", // PIG
+            "A nocturnal bird known for its distinctive hooting call.", // OWL
+            "A building designed for people to live in.", // HOUSE
+            "An organism that grows in soil and performs photosynthesis.", // PLANT
+            "A fruit that can be red, green, or yellow and is often eaten raw or used in pies.", // APPLE
+            "A transparent, colorless liquid essential for life.", // WATER
+            "A large, striped feline predator found in Asia.", // TIGER
+            "A staple food made from flour, water, and yeast.", // BREAD
+            "A common piece of furniture with four legs used for sitting.", // CHAIR
+            "A piece of furniture with a flat top used for eating, writing, or working.", // TABLE
+            "A small, juicy fruit that grows in clusters on vines.", // GRAPE
+            "A garment worn on the upper body, typically with buttons and a collar.", // SHIRT
+            "A device that provides illumination, commonly found in homes.", // LIGHT
+            "A tool with bristles used for cleaning or styling.", // BRUSH
+            "A small stick that can be struck to create a flame.", // MATCH
+            "A reptile with no legs that slithers on the ground.", // SNAKE
+            "A horizontal surface for storing items, often attached to a wall.", // SHELF
+            "A flying vehicle used for transportation over long distances.", // PLANE
+            "A sweet food often enjoyed as a treat, especially by children.", // CANDY
+            "An experience you have while sleeping, often involving vivid images or events.", // DREAM
+            "A term often used to describe something sugary or delightful.", // SWEET
+            "A solid mineral material found in nature, often used for building.", // STONE
+            "A sport where players try to score points by throwing a ball through a hoop.", // BASKETBALL
+            "A close and caring relationship between people who care about each other.", // FRIENDSHIP
+            "An electronic device used for viewing broadcast or streamed content.", // TELEVISION
+            "A two-wheeled vehicle powered by an engine, often used for transportation or racing.", // MOTORCYCLE
+            "A public notice or announcement promoting a product, service, or event.", // ADVERTISEMENT
+            "A business or entity that produces goods for sale.", // MANUFACTURER
+            "The activity of maintaining financial records and accounts.", // BOOKKEEPING
+            "The art or practice of capturing images using a camera.", // PHOTOGRAPHY
+            "Written works, especially those considered to have artistic or intellectual value.", // LITERATURE
+            "A person who manages and oversees the work of others.", // SUPERVISOR
+            "The quality of being kind and willing to give or share.", // GENEROSITY
+            "Professionals who travel and work in space.", // ASTRONAUTS
+            "The power to create ideas, pictures, or objects in your mind.", // IMAGINATION
+            "A tradesperson who builds and repairs wooden structures.", // CARPENTER
+            "Sweet treats made from cocoa, often given as gifts.", // CHOCOLATES
+            "The ability to guide and influence others.", // LEADERSHIP
+            "A person or entity that takes part in a contest or competition.", // COMPETITOR
+            "A close connection between people, such as a family tie or friendship.", // RELATIONSHIP
+            "A device used to manage or operate something.", // CONTROLLER
+            "The process of producing and distributing printed material or content.", // PUBLICATION
         ];
 
         const easyHints = [
-            "The Mediterranean and the Caribbean are examples of this.", // sea
-            "This animal says 'meow.'", // cat
-            "It's the reason we have daylight.", // sun
-            "People wear this on their head to keep warm in winter or cool in summer.", // hat
-            "People live in this, and it has doors and windows.", // house
-            "Trees, flowers, and shrubs are all examples of this.", // plant
-            "This fruit was famously used by Newton to describe gravity.", // apple
-            "You drink this liquid every day, and it comes from taps and bottles.", // water
-            "This big cat is often featured in zoos and is the largest species of the cat family.", // tiger
-            "You often spread butter or jam on this food.", // bread
-            "Michael Jordan is famous for playing this sport.", // basketball
-            "It's a bond you share with your best friends.", // friendship
-            "You watch shows and movies on this device.", // television
-            "It's a vehicle you ride on that has a motor and two wheels." // motorcycle
+            "The Mediterranean and the Caribbean are examples of this.", // SEA
+            "This animal says 'meow.'", // CAT
+            "It's the reason we have daylight.", // SUN
+            "People wear this on their head to keep warm in winter or cool in summer.", // HAT
+            "It's used by athletes to hit a ball in baseball.", // BAT
+            "This animal says 'woof.'", // DOG
+            "What you do when you move quickly on foot.", // RUN
+            "Used to catch fish or butterflies.", // NET
+            "You drink from this small container.", // CUP
+            "A square or rectangular container used for storage.", // BOX
+            "A sweet spread made from fruit.", // JAM
+            "Used to find your way; often shows streets and landmarks.", // MAP
+            "A tool used for writing or drawing with ink.", // PEN
+            "Another word for a hat.", // CAP
+            "Used to cool down in warm weather.", // FAN
+            "A small insect that lives in colonies.", // ANT
+            "A wild animal known for its cunning and reddish fur.", // FOX
+            "A glass container with a lid.", // JAR
+            "A farm animal that says 'oink.'", // PIG
+            "A bird that can turn its head almost completely around.", // OWL
+            "People live in this, and it has doors and windows.", // HOUSE
+            "Trees, flowers, and shrubs are all examples of this.", // PLANT
+            "This fruit was famously used by Newton to describe gravity.", // APPLE
+            "You drink this liquid every day, and it comes from taps and bottles.", // WATER
+            "This big cat is often featured in zoos and is the largest species of the cat family.", // TIGER
+            "You often spread butter or jam on this food.", // BREAD
+            "A piece of furniture you sit on.", // CHAIR
+            "A piece of furniture you eat at or work on.", // TABLE
+            "A small, round fruit that grows in bunches.", // GRAPE
+            "A piece of clothing worn on the upper body.", // SHIRT
+            "It brightens a room; can be found in lamps or ceilings.", // LIGHT
+            "A tool used for grooming hair or cleaning teeth.", // BRUSH
+            "A small stick that can create a flame.", // MATCH
+            "A long, legless reptile.", // SNAKE
+            "A place to store books or other items.", // SHELF
+            "A vehicle with wings that flies in the sky.", // PLANE
+            "A sweet treat often enjoyed by children.", // CANDY
+            "What you experience while you sleep.", // DREAM
+            "Another word for a treat or dessert.", // SWEET
+            "A small piece of rock.", // STONE
+            "Michael Jordan is famous for playing this sport.", // BASKETBALL
+            "It's a bond you share with your best friends.", // FRIENDSHIP
+            "You watch shows and movies on this device.", // TELEVISION
+            "It's a vehicle you ride on that has a motor and two wheels.", // MOTORCYCLE
+            "A visual notice used to promote products or services.", // ADVERTISEMENT
+            "A company that makes goods for sale.", // MANUFACTURER
+            "The practice of keeping financial records.", // BOOKKEEPING
+            "The art or practice of taking and processing photographs.", // PHOTOGRAPHY
+            "Written works considered to have artistic or intellectual value.", // LITERATURE
+            "A person who oversees and manages others.", // SUPERVISOR
+            "The quality of being kind and giving.", // GENEROSITY
+            "People trained to travel and work in space.", // ASTRONAUTS
+            "The ability to form new ideas or images.", // IMAGINATION
+            "A skilled worker who makes or repairs wooden objects.", // CARPENTER
+            "Sweet treats made from cocoa.", // CHOCOLATES
+            "The ability to guide or direct others.", // LEADERSHIP
+            "A person or group that competes.", // COMPETITOR
+            "A connection between people or entities.", // RELATIONSHIP
+            "A device used to control or manage something.", // CONTROLLER
+            "The process of issuing printed or digital material.", // PUBLICATION
         ];
 
         hintCountSpan.innerHTML = hintCount
@@ -342,7 +536,7 @@ function generateInput(tryNum, wordLen) {
             hintBtn.disabled = true
 
             // adding restart button
-            document.querySelector(".guess-game .game-area").appendChild(restartBtn)
+            document.querySelector(".guess-game .user-help").appendChild(restartBtn)
 
         } else {
             // Make current row work
@@ -373,7 +567,7 @@ function generateInput(tryNum, wordLen) {
                 hintBtn.disabled = true
 
                 // adding restart button
-                document.querySelector(".guess-game .game-area").appendChild(restartBtn)
+                document.querySelector(".guess-game .user-help").appendChild(restartBtn)
             }
 
         }
