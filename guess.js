@@ -20,9 +20,9 @@ window.onload = function () {
                 <div class="numOfChars">
                     <label for="numOfChars">how long of every life </label>
                     <select id="numOfChars">
-                        <option value="3">3 litters</option>
-                        <option value="5">5 litters</option>
-                        <option value="10">10 litters</option>
+                        <option value="3">3 letters</option>
+                        <option value="5">5 letters</option>
+                        <option value="10">10 letters</option>
                     </select>
                 </div>
                 <div class="check-before-play">
@@ -560,11 +560,8 @@ function generateInput(tryNum, wordLen) {
 
                 // Focus on the first input in the new row
                 nextTryInputs[0].focus()
-            }
-
-
-            // Print lose message
-            if (currentTry > tryNum) {
+            } else {
+                // Print lose message
                 messageArea.innerHTML = `you lost and the word is <span class="lose">${wordToGuess}</span>`
 
                 // Disable check/guess and hint button
