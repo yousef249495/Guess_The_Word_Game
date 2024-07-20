@@ -144,9 +144,9 @@ function generateInput(tryNum, wordLen) {
             })
         })
     }
-
-    inputContainer.children[0].children[1].focus()
-
+    if (window.innerWidth > "450") {
+        inputContainer.children[0].children[1].focus()
+    }
     // Manege words list
     let wordToGuess = ""
     const wordList3 = ['SEA', 'CAT', 'SUN', 'HAT', 'BAT',
