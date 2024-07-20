@@ -144,9 +144,13 @@ function generateInput(tryNum, wordLen) {
             })
         })
     }
-    if (window.innerWidth > "450") {
+
+    if (window.innerWidth < "450") {
+        window.scrollTo(0, 0)
+    } else {
         inputContainer.children[0].children[1].focus()
     }
+
     // Manege words list
     let wordToGuess = ""
     const wordList3 = ['SEA', 'CAT', 'SUN', 'HAT', 'BAT',
@@ -180,7 +184,6 @@ function generateInput(tryNum, wordLen) {
 
     // Print word description
     const allWords = [...wordList3, ...wordList5, ...wordList10]
-    console.log(allWords);
     const startHints = [
         "It's often associated with tides and waves.", // SEA
         "A feline animal often seen as a pet and known for its agility.", // CAT
