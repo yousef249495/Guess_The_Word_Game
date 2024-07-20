@@ -6,7 +6,7 @@
 
 window.onload = function () {
     // Put the game name in it's place
-    gameName("guess the word", "1.6")
+    gameName("guess the word", "1.7")
 
     let startBtn = document.querySelector(".start-btn")
 
@@ -542,11 +542,7 @@ function generateInput(tryNum, wordLen) {
             guessBtn.disabled = true
             hintBtn.disabled = true
 
-            // adding restart button
-            document.querySelector(".guess-game .user-help").appendChild(restartBtn)
-            messageArea.style.marginBottom = "50px"
-            window.scroll(0, 200)
-
+            restartFun()
         } else {
             // Make current row work
             document.querySelector(`.try-${currentTry}`).classList.add("disabled")
@@ -575,17 +571,19 @@ function generateInput(tryNum, wordLen) {
                 guessBtn.disabled = true
                 hintBtn.disabled = true
 
-                // adding restart button
-                document.querySelector(".guess-game .user-help").appendChild(restartBtn)
-                messageArea.style.marginBottom = "50px"
-                window.scroll(0, 200)
+                restartFun()
             }
 
         }
 
-        // refresh the page on the end
-        restartBtn.addEventListener("click", () => location.reload())
+        function restartFun() {
+            // adding restart button
+            document.querySelector(".guess-game .user-help").appendChild(restartBtn)
+            window.scroll(0, 200)
 
+            // refresh the page on the end
+            restartBtn.addEventListener("click", () => location.reload())
+        }
     }
 
     // Checking inputs
