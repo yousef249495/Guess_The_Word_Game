@@ -545,6 +545,7 @@ function generateInput(tryNum, wordLen) {
             // adding restart button
             document.querySelector(".guess-game .user-help").appendChild(restartBtn)
             messageArea.style.marginBottom = "50px"
+            window.scroll(0, 200)
 
         } else {
             // Make current row work
@@ -577,6 +578,7 @@ function generateInput(tryNum, wordLen) {
                 // adding restart button
                 document.querySelector(".guess-game .user-help").appendChild(restartBtn)
                 messageArea.style.marginBottom = "50px"
+                window.scroll(0, 200)
             }
 
         }
