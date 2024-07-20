@@ -579,7 +579,7 @@ function generateInput(tryNum, wordLen) {
         function restartFun() {
             // adding restart button
             document.querySelector(".guess-game .user-help").appendChild(restartBtn)
-            window.scroll(0, 200)
+            window.scrollTo({ top: 200, left: 0, behavior: "smooth" })
 
             // refresh the page on the end
             restartBtn.addEventListener("click", () => location.reload())
