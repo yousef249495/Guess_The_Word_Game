@@ -14,8 +14,8 @@ window.onload = function () {
         document.querySelector(".guess-game .game-area").innerHTML = ` 
             <form>
                 <div class="numOfTries">
-                    <label for="numOfTries">How much life do you want in this game (1 - 10)</label>
-                    <input id="numOfTries" type="number" max="10" min="1" autofocus required>
+                    <label for="numOfTries">How much life do you want in this game (2 - 6)</label>
+                    <input id="numOfTries" type="number" max="6" min="2" autofocus required>
                 </div>
                 <div class="numOfChars">
                     <label for="numOfChars">how long of every life </label>
