@@ -590,12 +590,3 @@ function generateInput(tryNum, wordLen) {
 
 
 }
-
-
-
-
-
-
-
-
-
