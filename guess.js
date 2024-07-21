@@ -6,7 +6,7 @@
 
 window.onload = function () {
     // Put the game name in it's place
-    gameName("guess the word", "1.7")
+    gameName("guess the word", "2.0")
 
     let startBtn = document.querySelector(".start-btn")
 
@@ -128,18 +128,15 @@ function generateInput(tryNum, wordLen) {
                 // console.log(inputs);
                 // console.log(e.target.value);
 
-                const currentIndex = Array.from(inputs).indexOf(this)
-                if (e.key === "ArrowRight") {
-                    const nextIndex = currentIndex + 1
-                    if (nextIndex < inputs.length) inputs[nextIndex].focus()
-                }
-                if (e.key === "ArrowLeft") {
-                    const prevIndex = currentIndex - 1
-                    if (prevIndex >= 0) inputs[prevIndex].focus()
-                }
-                if (e.key === "Backspace") {
-                    const prevIndex = currentIndex - 1
-                    if (prevIndex >= 0 && e.target.value === "") inputs[prevIndex].focus()
+                const currentIndex = Array.from(inputs).indexOf(this), currentInput = inputs[currentIndex]
+                let nextIndex = currentIndex + 1, nextInput = inputs[nextIndex]
+                let prevIndex = currentIndex - 1, prevInput = inputs[prevIndex]
+
+                if (e.key === "ArrowRight" && nextIndex < inputs.length) nextInput.focus()
+                if (e.key === "ArrowLeft" && prevIndex >= 0) prevInput.focus()
+                if (e.key === "Backspace" && prevIndex >= 0 && currentInput.value === "") {
+                    prevInput.value = ""
+                    prevInput.focus()
                 }
             })
         })
